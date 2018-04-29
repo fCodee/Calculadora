@@ -10,13 +10,14 @@ func main() {
 		r           string
 		sumandos    []int
 		iteraciones int
-		contador    int
+		suma        int
 	)
 	fmt.Println("ingrese que desea realizar\n, suma : su, \n, resta: res,\n, multiplicacion: multi,\n,  divicion: div \n")
 	fmt.Scanln(&r)
 
 	for iteraciones == 0 {
 		switch r {
+
 		case "su", "suma":
 			{
 
@@ -28,21 +29,19 @@ func main() {
 					fmt.Scanln(&r)
 					if r != "sum" && r != "suma" {
 						i, err := strconv.Atoi(r)
-						if err == nil {
+						if err != nil {
 							fmt.Println("no podemos almacenar el dato ")
 							iteraciones++
-						} else {
-							sumandos[contador] = i
-							contador++
 						}
+						sumandos = append(sumandos, i)
 
 					} else {
-						contador = 0
 						for i := 0; i < len(sumandos); i++ {
-							contador += sumandos[i]
+							suma += sumandos[i]
 						}
 
-						fmt.Println("la suma de los numeros es \n\t : ", contador)
+						fmt.Println("la suma de los numeros es \n\t : ", suma)
+						iteraciones
 						fmt.Scanln()
 					}
 
@@ -56,7 +55,7 @@ func main() {
 				iteraciones++
 			}
 		default:
-			fmt.Println("los datos ingresados no son validos por favor buelva" + "a intentarlo")
+			fmt.Println("los datos ingresados no son validos por favor buelva a intentarlo")
 		}
 	}
 
