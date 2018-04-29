@@ -14,23 +14,22 @@ func main() {
 	)
 
 	for iteraciones == 0 {
-		fmt.Println("ingrese que desea realizar\n, suma : su, \n, resta: res,\n, multiplicacion: multi,\n,  divicion: div \n")
+		fmt.Println("ingrese que desea realizar\n suma : su \n resta: res\n multiplicacion: multi\n  divicion: div \nsalir : sal")
 		fmt.Scanln(&r)
 		switch r {
-
 		case "su", "suma":
 			{
-
+				fmt.Println("bienvenido ingrese numeros")
 				for iteraciones == 0 { //for-while interno case
-					fmt.Println("+")
-
 					fmt.Scanln(&r)
+
 					if r != "sum" && r != "suma" && r != "su" {
 						i, err := strconv.Atoi(r)
 						if err != nil {
 							fmt.Println("no podemos almacenar el dato ")
 							iteraciones++
 						}
+						fmt.Println("+")
 						sumandos = append(sumandos, i)
 
 					} else {
@@ -49,24 +48,26 @@ func main() {
 			}
 		case "resta", "re", "res":
 			{
-				fmt.Println("Resta")
 
 				for iteraciones == 0 {
 					if r != "resta" && r != "re" && r != "r" {
 						fmt.Println("ingrese minuendo")
 						fmt.Scanln(&r)
+
 						minuendo, err := strconv.Atoi(r)
+
 						if err != nil {
 							fmt.Println("no se admite el dato")
 							iteraciones++
 						} else {
-							fmt.Println("ingrese sustraendo")
+							fmt.Println("-")
 							fmt.Scanln(&r)
 							sustraendo, er := strconv.Atoi(r)
 							if er != nil {
 								fmt.Println("no se admite el dato")
 								iteraciones++
 							}
+							//utilizamos la variable suma para no tener que decalarar mas variables
 							suma = minuendo - sustraendo
 							fmt.Println("la resta de los numeros es", suma)
 						}
@@ -76,8 +77,33 @@ func main() {
 				}
 				iteraciones = 0 //for-while externo
 			}
-		case "salir", "sal":
+		case "multi", "multiplicacion", "m":
 
+			fmt.Println("ingrese 1o factor")
+			fmt.Scanln(&r)
+
+			if r != "m" && r != "multi" && r != "multiplicacion" {
+
+				fac1, err := strconv.Atoi(r)
+
+				if err != nil {
+					fmt.Println("dato no valido vuelva a intentarlo")
+				} else {
+					fmt.Println("*")            //imprimimos el signo *
+					fmt.Scanln(&r)              //escaneamos la entrada
+					fac2, er := strconv.Atoi(r) //la convertimos a entero
+
+					if er != nil {
+						fmt.Println("dato no valido vuelva a intentarlo")
+					} else {
+						suma = fac1 * fac2
+						fmt.Println("la multiplicacion de los dos numeros es", suma)
+					}
+				}
+
+			}
+
+		case "salir", "sal":
 			fmt.Println("gracias por utilizar el programa... :=) ")
 			iteraciones++
 		default:
