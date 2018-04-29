@@ -79,7 +79,7 @@ func main() {
 			}
 		case "multi", "multiplicacion", "m":
 
-			fmt.Println("ingrese 1o factor")
+			fmt.Println("ingrese 1o. factor")
 			fmt.Scanln(&r)
 
 			if r != "m" && r != "multi" && r != "multiplicacion" {
@@ -101,6 +101,51 @@ func main() {
 					}
 				}
 
+			}
+		case "div", "divicion", "d":
+			for {
+				fmt.Println("Que tipo de divicion desea realizar\n\t\t flotante : f \n\t\t entera : e\n\t\t salir : sal")
+				fmt.Scanln(&r)
+
+				if r == "f" || r == "e" {
+					//declaramos dos variables de punto flotante para las diviciones
+					//var divisor, dividendo float32
+					var verificador bool
+
+					if r == "f" {
+						verificador = false
+					} else {
+						verificador = true
+					}
+
+					fmt.Println("ingrese  numero a dividir")
+					fmt.Scanln(&r)
+
+					dividendo, err := strconv.ParseFloat(r, 32)
+
+					if err != nil {
+						fmt.Println("dato no valido intente otra vez")
+					}
+					fmt.Println("ingrese divisor")
+					fmt.Scanln(&r)
+
+					divisor, err := strconv.ParseFloat(r, 32)
+
+					if err != nil {
+						fmt.Println("dato no valido intente otra vez")
+					}
+
+					if verificador == false {
+						fmt.Println("la divicion entre ", dividendo, "  y  ", divisor, " es ", dividendo/divisor)
+					} else {
+						fmt.Println("la divicion entre ", int(dividendo), "  y  ", int(divisor), " es ", int(dividendo/divisor))
+					}
+
+				} else if r == "salir" || r == "sal" {
+					break
+				} else {
+					fmt.Println("dato no valido intete otra vez")
+				}
 			}
 
 		case "salir", "sal":
