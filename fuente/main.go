@@ -22,7 +22,7 @@ func main() {
 			{
 
 				for iteraciones == 0 { //for-while interno case
-					fmt.Println("ingrese numero")
+					fmt.Println("+")
 
 					fmt.Scanln(&r)
 					if r != "sum" && r != "suma" && r != "su" {
@@ -47,7 +47,36 @@ func main() {
 				//iteraciones = 1 //finaliza for-while externo
 				iteraciones = 0
 			}
-		case "salir":
+		case "resta", "re", "res":
+			{
+				fmt.Println("Resta")
+
+				for iteraciones == 0 {
+					if r != "resta" && r != "re" && r != "r" {
+						fmt.Println("ingrese minuendo")
+						fmt.Scanln(&r)
+						minuendo, err := strconv.Atoi(r)
+						if err != nil {
+							fmt.Println("no se admite el dato")
+							iteraciones++
+						} else {
+							fmt.Println("ingrese sustraendo")
+							fmt.Scanln(&r)
+							sustraendo, er := strconv.Atoi(r)
+							if er != nil {
+								fmt.Println("no se admite el dato")
+								iteraciones++
+							}
+							suma = minuendo - sustraendo
+							fmt.Println("la resta de los numeros es", suma)
+						}
+
+					}
+					iteraciones++ //for-while interno
+				}
+				iteraciones = 0 //for-while externo
+			}
+		case "salir", "sal":
 
 			fmt.Println("gracias por utilizar el programa... :=) ")
 			iteraciones++
