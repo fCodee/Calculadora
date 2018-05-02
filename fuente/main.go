@@ -2,8 +2,16 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 	"strconv"
 )
+
+func clear() {
+	cmd := exec.Command("clear")
+	cmd.Stdout = os.Stdout
+	cmd.Run()
+}
 
 func main() {
 	var (
@@ -19,6 +27,7 @@ func main() {
 		switch r {
 		case "su", "suma":
 			{
+				suma = 0
 				fmt.Println("bienvenido ingrese numeros")
 				for iteraciones == 0 { //for-while interno case
 					fmt.Scanln(&r)
@@ -38,7 +47,10 @@ func main() {
 							suma += sumandos[i]
 						}
 
-						fmt.Println("la suma de los numeros es \n\t : ", suma)
+						fmt.Println("la suma de los numeros es \n\t : ", suma, "enter para hacer otras operaciones")
+						fmt.Scanln()
+						sumandos = []int{0}
+						clear()
 						iteraciones++ //for-while interno case finaliza
 					}
 				}
@@ -48,7 +60,7 @@ func main() {
 			}
 		case "resta", "re", "res":
 			{
-
+				suma = 0
 				for iteraciones == 0 {
 					if r != "resta" && r != "re" && r != "r" {
 						fmt.Println("ingrese minuendo")
@@ -59,6 +71,8 @@ func main() {
 						if err != nil {
 							fmt.Println("no se admite el dato")
 							iteraciones++
+							fmt.Scanln()
+							clear()
 						} else {
 							fmt.Println("-")
 							fmt.Scanln(&r)
@@ -66,10 +80,13 @@ func main() {
 							if er != nil {
 								fmt.Println("no se admite el dato")
 								iteraciones++
+								clear()
 							}
 							//utilizamos la variable suma para no tener que decalarar mas variables
 							suma = minuendo - sustraendo
-							fmt.Println("la resta de los numeros es", suma)
+							fmt.Println("la resta de los numeros es", suma, "enter para hacer otras operaciones")
+							fmt.Scanln()
+							clear()
 						}
 
 					}
@@ -78,7 +95,7 @@ func main() {
 				iteraciones = 0 //for-while externo
 			}
 		case "multi", "multiplicacion", "m":
-
+			suma = 0
 			fmt.Println("ingrese 1o. factor")
 			fmt.Scanln(&r)
 
@@ -88,6 +105,7 @@ func main() {
 
 				if err != nil {
 					fmt.Println("dato no valido vuelva a intentarlo")
+					clear()
 				} else {
 					fmt.Println("*")            //imprimimos el signo *
 					fmt.Scanln(&r)              //escaneamos la entrada
@@ -95,15 +113,20 @@ func main() {
 
 					if er != nil {
 						fmt.Println("dato no valido vuelva a intentarlo")
+						clear()
 					} else {
 						suma = fac1 * fac2
-						fmt.Println("la multiplicacion de los dos numeros es", suma)
+						fmt.Println("la multiplicacion de los dos numeros es", suma, "enter para hacer otras operaciones")
+						fmt.Scanln()
+						clear()
 					}
 				}
 
 			}
 		case "div", "divicion", "d":
 			for {
+
+				clear()
 				fmt.Println("Que tipo de divicion desea realizar\n\t\t flotante : f \n\t\t entera : e\n\t\t salir : sal")
 				fmt.Scanln(&r)
 
@@ -125,6 +148,8 @@ func main() {
 
 					if err != nil {
 						fmt.Println("dato no valido intente otra vez")
+						fmt.Scanln()
+						clear()
 					}
 					fmt.Println("ingrese divisor")
 					fmt.Scanln(&r)
@@ -133,26 +158,36 @@ func main() {
 
 					if err != nil {
 						fmt.Println("dato no valido intente otra vez")
+						fmt.Scanln()
+						clear()
 					}
 
 					if verificador == false {
-						fmt.Println("la divicion entre ", dividendo, "  y  ", divisor, " es ", dividendo/divisor)
+						fmt.Println("la divicion entre ", dividendo, "  y  ", divisor, " es ", dividendo/divisor, "enter para hacer otras operaciones")
+						fmt.Scanln()
+						clear()
 					} else {
-						fmt.Println("la divicion entre ", int(dividendo), "  y  ", int(divisor), " es ", int(dividendo/divisor))
+						fmt.Println("la divicion entre ", int(dividendo), "  y  ", int(divisor), " es ", int(dividendo/divisor), "enter para hacer otras operaciones")
+						fmt.Scanln()
+						clear()
 					}
 
 				} else if r == "salir" || r == "sal" {
+					clear()
 					break
 				} else {
 					fmt.Println("dato no valido intete otra vez")
+					fmt.Scanln()
+					clear()
 				}
 			}
 
 		case "salir", "sal":
-			fmt.Println("gracias por utilizar el programa... :=) ")
+			fmt.Println("gracias por utilizar el programa... :=)  ")
 			iteraciones++
 		default:
 			fmt.Println("los datos ingresados no son validos por favor buelva a intentarlo")
+			clear()
 		}
 	}
 
